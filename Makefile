@@ -56,10 +56,9 @@ restart_nginx:
 restart_mysql:
 	sudo systemctl restart mysql
 
-.PHONY: connect_mysql
-connect_mysql:
-	export MYSQL_PWD=isucon; \
-	mysql -h 127.0.0.1 -P 3306 -u isucon $(BIN_NAME)
+.PHONY: mysql
+mysql:
+	sudo mysql $(BIN_NAME)
 
 .PHONY: install_netdata
 install_netdata:
