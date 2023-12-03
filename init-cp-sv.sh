@@ -1,5 +1,5 @@
 #!/bin/bash
-DEST=/home/isucon/zz_10q-wakabayashi/SV1
+DEST=/home/isucon/isucon13-practice/SV1
 
 # SV
 # Nginx
@@ -15,4 +15,3 @@ mkdir -p ${DEST}/${SUB}
 cp /etc/mysql/my.cnf /etc/mysql/mysql.cnf ${DEST}/${SUB}
 cp -rf /etc/mysql/conf.d ${DEST}/${SUB}
 cp -rf /etc/mysql/mysql.conf.d ${DEST}/${SUB}
-

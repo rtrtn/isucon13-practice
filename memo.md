@@ -44,3 +44,11 @@ func Run() {
   // e.Logger.SetLevel(log.DEBUG)
   // e.Use(middleware.Logger())
 ```
+
+## github のログイン
+
+アクセストークンを利用してログインする。
+
+- setting -> Developer Setting からアクセストークンを作成。
+- `git config --global credential.helper 'store --file ~/.git_credentials'`
+- pull などを行う際にパスワード部分にトークンを入れる
