@@ -49,7 +49,7 @@ CREATE TABLE `livestreams` (
 ALTER TABLE
   livestreams
 ADD
-  INDEX id__user_id (id, user_id);
+  INDEX user_id (user_id);
 
 -- ライブ配信予約枠
 CREATE TABLE `reservation_slots` (
@@ -62,7 +62,7 @@ CREATE TABLE `reservation_slots` (
 ALTER TABLE
   reservation_slots
 ADD
-  INDEX start_at__end_at (start_at, end_at);
+  INDEX end_at (end_at);
 
 -- ライブストリームに付与される、サービスで定義されたタグ
 CREATE TABLE `tags` (
@@ -83,6 +83,11 @@ ALTER TABLE
 ADD
   INDEX livestream_id (livestream_id);
 
+ALTER TABLE
+  livestream_tags
+ADD
+  INDEX tag_id__livestream_id (tag_id, livestream_id);
+
 -- ライブ配信視聴履歴
 CREATE TABLE `livestream_viewers_history` (
   `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -90,6 +95,11 @@ CREATE TABLE `livestream_viewers_history` (
   `livestream_id` BIGINT NOT NULL,
   `created_at` BIGINT NOT NULL
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
+ALTER TABLE
+  livestream_viewers_history
+ADD
+  INDEX user_id__livestream_id (user_id, livestream_id);
 
 -- ライブ配信に対するライブコメント
 CREATE TABLE `livecomments` (
@@ -115,6 +125,11 @@ CREATE TABLE `livecomment_reports` (
   `created_at` BIGINT NOT NULL
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
+ALTER TABLE
+  livecomment_reports
+ADD
+  INDEX idx_livestream_id(livestream_id);
+
 -- 配信者からのNGワード登録
 CREATE TABLE `ng_words` (
   `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -129,7 +144,7 @@ CREATE INDEX ng_words_word ON ng_words(`word`);
 ALTER TABLE
   ng_words
 ADD
-  INDEX user_id__livestream_id__created_at (user_id, livestream_id, created_at);
+  INDEX livestream_id__user_id (livestream_id, user_id);
 
 -- ライブ配信に対するリアクション
 CREATE TABLE `reactions` (
@@ -144,4 +159,4 @@ CREATE TABLE `reactions` (
 ALTER TABLE
   reactions
 ADD
-  INDEX livestream_id (livestream_id);
+  INDEX livestream_id__created_at (livestream_id, created_at);
