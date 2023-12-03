@@ -95,6 +95,7 @@ install_kataribe:
 git_config:
 	git config --global user.name serio
 	git config --global user.email serio@serio.com
+	git config --global core.editor vim
 
 .PHONY: setup
 setup: install_netdata install_pprof install_pt_query_digest install_kataribe git_config

@@ -52,3 +52,5 @@ func Run() {
 - setting -> Developer Setting からアクセストークンを作成。
 - `git config --global credential.helper 'store --file ~/.git_credentials'`
 - pull などを行う際にパスワード部分にトークンを入れる
+- ついでにvimに変更しておくと幸せ
+  - `git config --global core.editor vim`
